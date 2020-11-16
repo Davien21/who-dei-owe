@@ -37,5 +37,13 @@ router.put('/:id', [ validateObjectId, validateBody(validateDebt)], async (req, 
 
   res.send(debt);
 })
+
+router.delete('/:id', [ validateObjectId], async (req, res) => {
+  const debt = await Debt.findByIdAndDelete(req.params.id)
+
+  if(!debt) return res.status(404).send('Invalid Debt')
+
+  res.send(debt);
+})
  
 module.exports = router;

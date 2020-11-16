@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const debts = await Debt.find()
+  const debts = await Debt.find().select('name cause amount')
 
   res.send(debts)
 })
@@ -21,7 +21,7 @@ router.get('/:id', validateObjectId, async (req, res) => {
   res.send(debt)
 })
  
-router.post('/', [validateBody(validateDebt)], async (req, res) => {
+router.post('/', [ validateBody(validateDebt) ], async (req, res) => {
   let debt = new Debt( _.pick(req.body, ['name', 'cause', 'amount'] ))
   
   debt = await debt.save()

@@ -28,5 +28,14 @@ router.post('/', [validateBody(validateDebt)], async (req, res) => {
 
   res.send(debt)
 })
+
+router.put('/:id', [ validateObjectId, validateBody(validateDebt)], async (req, res) => {
+  const debt = await Debt.findByIdAndUpdate(req.params.id,
+    _.pick(req.body, ['name', 'cause', 'amount']), { new: true })
+
+  if(!debt) return res.status(404).send('Invalid Debt')
+
+  res.send(debt);
+})
  
 module.exports = router;

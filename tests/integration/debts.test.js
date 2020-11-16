@@ -266,4 +266,64 @@ describe('/api/admins', () => {
   
   })
 
+  describe('DELETE /:id', () => {
+    let debt;
+    let debtId;
+
+    beforeEach( async () => {
+      // Before each test we need to create a debt and 
+      // put it in the database.
+      debt = new Debt({ name: 'elliot', cause: 'lateness', amount: '2000'})
+      await debt.save()
+      
+      debtId = debt._id
+    })
+    
+    const exec = () => {
+      return request(server)
+        .delete('/api/debts/' + debtId)
+        .send()
+    }
+
+    it(('should return 404 if debtId is invalid'), async () => {
+      debtId = "1";
+
+      const res = await exec();
+
+      expect(res.status).toBe(404);
+    })
+ 
+    it(('should return 404 if debt is not found'), async () => {
+      debtId = mongoose.Types.ObjectId();
+
+      const res = await exec();
+      
+      expect(res.status).toBe(404);
+    })
+    
+    it(('should return 200 if inputs are valid'), async () => {
+      const res = await exec();
+
+      expect(res.status).toBe(200)
+    })
+    
+    it(('should delete debt if debt exists is valid'), async () => {
+      const res = await exec();
+
+      const debtInDB = await Debt.findById(debtId)
+
+      expect(debtInDB).toBeNull()
+    })
+
+    it(('should return deleted debt to body of response'), async () => {
+      const res = await exec();
+
+      expect(res.body).toHaveProperty('name')
+      expect(res.body).toHaveProperty('cause')
+      expect(res.body).toHaveProperty('amount')
+    })
+ 
+  })
+  
+
 })

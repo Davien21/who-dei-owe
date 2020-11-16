@@ -36,9 +36,9 @@ model.validateDebt = (debt) => {
     .valid(
       'lateness'
     ).required().insensitive(),
-    price: Joi.number().required()
+    amount: Joi.number().required()
   }
-	return result = Joi.validate(debt,schema);
+	return result = Joi.validate(debt, schema);
 } 
 
 module.exports = model;

@@ -1,0 +1,5 @@
+{
+  "jwtPrivateKey": "1234",
+  "db": "mongodb://localhost/who_dei_owe_tests"
+
+}

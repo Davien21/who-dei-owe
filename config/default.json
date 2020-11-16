@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "who_dei_owe_jwtPrivateKey",
+  "db": "mongodb://localhost/who_dei_owe"
+}

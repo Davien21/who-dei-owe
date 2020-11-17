@@ -10,6 +10,9 @@
     "start": "node app.js",
     "test": "jest --env=node --watchAll --verbose --coverage --runInBand"
   },
+  "engines": {
+    "node": "10.16.0"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -1,3 +1,5 @@
 {
-  "jwtPrivateKey" : "who_dei_owe_jwtPrivateKey"
+  "jwtPrivateKey" : "who_dei_owe_jwtPrivateKey",
+  "db" : "who_dei_owe_db"
+
 }

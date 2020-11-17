@@ -5,4 +5,4 @@ Built with love by an intern
 
 ## How to Use:    
 Postman documentation:   
-https://www.getpostman.com/collections/22b0c909054213211ee7
+https://documenter.getpostman.com/view/9823092/TVeqcSh9

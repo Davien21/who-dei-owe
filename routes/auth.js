@@ -9,12 +9,14 @@ const express = require('express');
 const validateBody = require('../middleware/validateBody');
 const router = express.Router();
 
+const err = { status: false, data: null }
+
 router.post('/', validateBody(validate), async (req,res) => {
   let admin = await Admin.findOne({ email: req.body.email });
   if (!admin) return res.status(400).send('Invalid email or password');
   
   const validPassword =  await bcrypt.compare(req.body.password, admin.password);
-  if(!validPassword) return res.status(400).send('Invalid email or password');
+  if(!validPassword) return res.status(400).send({ err, message:'Invalid email or password'});
   
   const token = admin.generateAuthToken();
   

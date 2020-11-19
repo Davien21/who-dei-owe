@@ -16,7 +16,7 @@ router.post('/', validateBody(validate), async (req,res) => {
   if (!admin) return res.status(400).send('Invalid email or password');
   
   const validPassword =  await bcrypt.compare(req.body.password, admin.password);
-  if(!validPassword) return res.status(400).send({ err, message:'Invalid email or password'});
+  if(!validPassword) return res.status(400).send({ ...err, message:'Invalid email or password'});
   
   const token = admin.generateAuthToken();
   

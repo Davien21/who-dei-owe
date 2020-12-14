@@ -6,3 +6,6 @@ Built with love by an intern
 ## How to Use:    
 Postman documentation:   
 https://documenter.getpostman.com/view/9823092/TVeqcSh9
+
+## Hosted at:
+https://who-dei-owe.herokuapp.com/api/debts
